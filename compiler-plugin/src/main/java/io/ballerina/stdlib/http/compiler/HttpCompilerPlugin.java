@@ -23,6 +23,8 @@ import io.ballerina.projects.plugins.CompilerPlugin;
 import io.ballerina.projects.plugins.CompilerPluginContext;
 import io.ballerina.projects.plugins.codeaction.CodeAction;
 import io.ballerina.projects.plugins.completion.CompletionProvider;
+import io.ballerina.scan.ScannerContext;
+import io.ballerina.stdlib.http.compiler.analyzer.CustomCodeAnalyzer;
 import io.ballerina.stdlib.http.compiler.codeaction.AddHeaderParameterCodeAction;
 import io.ballerina.stdlib.http.compiler.codeaction.AddInterceptorRemoteMethodCodeAction;
 import io.ballerina.stdlib.http.compiler.codeaction.AddInterceptorResourceMethodCodeAction;
@@ -48,6 +50,13 @@ public class HttpCompilerPlugin extends CompilerPlugin {
         context.addCodeAnalyzer(new HttpServiceAnalyzer());
         getCodeActions().forEach(context::addCodeAction);
         getCompletionProviders().forEach(context::addCompletionProvider);
+
+        // Execute the static analysis only if the context object is available
+        Object contextObject = context.userData().get("ScannerContext");
+        if (contextObject != null) {
+            ScannerContext scannerContext = (ScannerContext) contextObject;
+            context.addCodeAnalyzer(new CustomCodeAnalyzer(scannerContext));
+        }
     }
 
     private List<CodeAction> getCodeActions() {

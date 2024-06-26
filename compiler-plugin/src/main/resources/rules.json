@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "ruleKind": "VULNERABILITY",
+    "description": "Avoid allowing unsafe HTTP methods"
+  },
+  {
+    "id": 2,
+    "ruleKind": "BUG",
+    "description": "rule 2"
+  },
+  {
+    "id": 3,
+    "ruleKind": "CODE_SMELL",
+    "description": "rule 3"
+  }
+]

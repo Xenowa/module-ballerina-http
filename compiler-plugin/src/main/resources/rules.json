@@ -1,17 +1,17 @@
 [
   {
     "id": 1,
-    "ruleKind": "VULNERABILITY",
+    "kind": "VULNERABILITY",
     "description": "Avoid allowing unsafe HTTP methods"
   },
   {
     "id": 2,
-    "ruleKind": "BUG",
+    "kind": "BUG",
     "description": "rule 2"
   },
   {
     "id": 3,
-    "ruleKind": "CODE_SMELL",
+    "kind": "CODE_SMELL",
     "description": "rule 3"
   }
 ]
